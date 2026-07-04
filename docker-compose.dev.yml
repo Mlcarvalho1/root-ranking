@@ -1,4 +1,4 @@
-# Banco de desenvolvimento local. Em produção o Postgres é um serviço do Dokploy.
+# Banco de desenvolvimento local. Em produção, use o docker-compose.yml (app + Postgres no Dokploy).
 services:
   db:
     image: postgres:17-alpine
