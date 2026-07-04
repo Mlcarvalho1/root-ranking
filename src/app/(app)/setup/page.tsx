@@ -4,6 +4,7 @@ import { db } from "@/db/client";
 import { factions } from "@/db/schema";
 import { Card } from "@/components/ui";
 import { SetupPlanner } from "@/components/setup-planner";
+import { SetupModeTabs } from "@/components/setup-mode-tabs";
 
 export const dynamic = "force-dynamic";
 
@@ -25,6 +26,8 @@ export default async function SetupPage() {
     <div className="space-y-4">
       <h1 className="text-3xl font-bold">Montar partida</h1>
 
+      <SetupModeTabs active="reach" />
+
       <Card className="flex flex-col items-center gap-4 p-4 sm:flex-row">
         <img
           src="/art/marauder-box.webp"
@@ -33,14 +36,18 @@ export default async function SetupPage() {
         />
         <div className="space-y-2 text-sm text-ink-soft">
           <p>
-            Para uma mesa equilibrada, o setup avançado oficial de Root dá a cada
-            facção um valor de <strong className="text-ink">Alcance</strong> — a
-            capacidade dela de pressionar o mapa. Escolham facções cuja soma atinja
-            o alcance recomendado para o número de jogadores, incluindo ao menos
-            uma facção <strong className="text-ink">militante</strong>.
+            Para uma mesa equilibrada, o sistema de{" "}
+            <strong className="text-ink">Alcance (Reach)</strong> de Root dá a
+            cada facção um valor — a capacidade dela de pressionar o mapa.
+            Escolham facções cuja soma atinja o alcance recomendado para o
+            número de jogadores, incluindo ao menos uma facção{" "}
+            <strong className="text-ink">militante</strong>.
           </p>
           <p>
             Monte a mesa manualmente ou deixe a floresta decidir com o sorteio.
+            Quer o <strong className="text-ink">Advanced Setup oficial</strong>{" "}
+            da expansão Marauder, com draft de facções? Use o modo Draft aí em
+            cima.
           </p>
         </div>
         <div aria-hidden className="hidden shrink-0 items-end gap-1 lg:flex">

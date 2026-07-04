@@ -1,6 +1,8 @@
-// Sistema oficial de Alcance (Reach) do setup avançado da expansão Marauder
-// (Lei de Root, seção de setup). Facções somando o alcance recomendado dão
-// uma partida equilibrada; recomenda-se ao menos uma facção militante.
+// Sistema de Alcance (Reach) da Lei de Root: um guia para escolher mesas
+// equilibradas. Facções somando o alcance recomendado dão uma partida
+// equilibrada; recomenda-se ao menos uma facção militante. Não confundir com
+// o Advanced Setup da expansão Marauder (draft de facções, sem Reach) —
+// esse vive em src/lib/advanced-setup.ts.
 
 export const FACTION_REACH: Record<string, number> = {
   marquise: 10,

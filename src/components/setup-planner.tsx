@@ -11,6 +11,7 @@ import {
   RECOMMENDED_REACH,
   SECOND_VAGABOND_REACH,
 } from "@/lib/reach";
+import { combinations } from "@/lib/random";
 
 type FactionOption = {
   id: number;
@@ -42,14 +43,6 @@ function buildCopies(factions: FactionOption[]): Copy[] {
     }
   }
   return copies;
-}
-
-function combinations<T>(items: T[], size: number): T[][] {
-  if (size === 0) return [[]];
-  if (items.length < size) return [];
-  const [first, ...rest] = items;
-  const withFirst = combinations(rest, size - 1).map((c) => [first, ...c]);
-  return withFirst.concat(combinations(rest, size));
 }
 
 export function SetupPlanner({ factions }: { factions: FactionOption[] }) {

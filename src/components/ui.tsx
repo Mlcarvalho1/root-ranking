@@ -1,6 +1,6 @@
 import { type ComponentProps } from "react";
 
-function cx(...classes: (string | undefined | false)[]) {
+export function cx(...classes: (string | undefined | false)[]) {
   return classes.filter(Boolean).join(" ");
 }
 

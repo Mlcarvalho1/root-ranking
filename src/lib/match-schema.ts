@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const MAPS = ["autumn", "winter", "lake", "mountain"] as const;
-export const DECKS = ["standard", "exiles_partisans"] as const;
+export const DECKS = ["standard", "exiles_partisans", "squires_disciples"] as const;
 
 export const MAP_LABELS: Record<string, string> = {
   autumn: "Outono",
@@ -13,6 +13,7 @@ export const MAP_LABELS: Record<string, string> = {
 export const DECK_LABELS: Record<string, string> = {
   standard: "Padrão",
   exiles_partisans: "Exilados & Partidários",
+  squires_disciples: "Escudeiros & Discípulos",
 };
 
 export const WIN_TYPE_LABELS: Record<string, string> = {
