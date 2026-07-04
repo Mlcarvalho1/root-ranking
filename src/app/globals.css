@@ -1,26 +1,107 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Paleta "pergaminho e tinta" inspirada na arte do Root */
+  --color-parchment: #efe3c4;
+  --color-parchment-light: #f7efdc;
+  --color-parchment-dark: #e0cfa4;
+  --color-ink: #3b2a1d;
+  --color-ink-soft: #6d573f;
+  --color-ink-faint: #a08a6b;
+  --color-ember: #e8752a; /* laranja Marquesa — accent principal */
+  --color-ember-dark: #c45d1a;
+  --color-moss: #57a559;
+  --color-mustard: #d9b52b;
+  --color-rust: #a83232;
+  --color-root-red: #c9503c; /* vermelho do logo da caixa do jogo */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-display: var(--font-almendra), serif;
+  --font-body: var(--font-alegreya), serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --shadow-card: 2px 3px 0 0 rgb(59 42 29 / 0.25);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-parchment);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  /* grão de papel sutil, gerado inline — nenhum asset externo */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.23 0 0 0 0 0.16 0 0 0 0 0.11 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+/* ---- animações ---- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes grow-bar {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.animate-grow-bar {
+  transform-origin: 0 50%;
+  animation: grow-bar 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-2.5deg);
+  }
+  50% {
+    transform: rotate(2.5deg);
+  }
+}
+
+.tree-sway {
+  transform-origin: 50% 100%;
+  animation: sway 6s ease-in-out infinite;
+}
+
+@keyframes leaf-fall {
+  0% {
+    transform: translateY(-6vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.75;
+  }
+  45% {
+    transform: translateY(45vh) translateX(-5vw) rotate(160deg);
+  }
+  100% {
+    transform: translateY(108vh) translateX(4vw) rotate(330deg);
+    opacity: 0.75;
+  }
+}
+
+.leaf-fall {
+  animation-name: leaf-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-grow-bar,
+  .tree-sway,
+  .leaf-fall {
+    animation: none;
+  }
 }

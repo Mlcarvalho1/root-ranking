@@ -1,3 +1,10 @@
-ignoredBuiltDependencies:
+# Dependências com postinstall aprovado (baixam binários pré-compilados)
+onlyBuiltDependencies:
+  - esbuild
   - sharp
   - unrs-resolver
+
+# O pnpm >=10.16 rejeita pacotes publicados há menos de 24h (minimumReleaseAge).
+# O lockfile é commitado com versões fixas, então liberamos a checagem para o
+# build no Docker/Dokploy não falhar com dependências recém-publicadas.
+minimumReleaseAge: 0

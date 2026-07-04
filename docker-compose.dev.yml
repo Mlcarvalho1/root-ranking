@@ -1,0 +1,17 @@
+# Banco de desenvolvimento local. Em produção o Postgres é um serviço do Dokploy.
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: root-ranking-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root_ranking
+      POSTGRES_PASSWORD: root_ranking
+      POSTGRES_DB: root_ranking
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
