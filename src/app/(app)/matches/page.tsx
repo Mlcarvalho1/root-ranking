@@ -5,6 +5,7 @@ import { matches } from "@/db/schema";
 import { Card } from "@/components/ui";
 import { FactionChip } from "@/components/faction-chip";
 import { Crown } from "@/components/decor";
+import { MatchSearch } from "@/components/match-search";
 import { MAP_LABELS } from "@/lib/match-schema";
 import { formatDate, sortByStanding } from "@/lib/format";
 
@@ -27,6 +28,8 @@ export default async function MatchesPage() {
           + Nova partida
         </Link>
       </div>
+
+      <MatchSearch />
 
       {list.length === 0 && (
         <Card className="p-8 text-center text-ink-soft">
