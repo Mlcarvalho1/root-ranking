@@ -1,4 +1,4 @@
-// Roda em um runner self-hosted com Ollama servindo qwen2.5:14b localmente.
+// Roda em um runner self-hosted com Ollama servindo qwen2.5-coder:14b localmente.
 // Gera o diff do PR, revisa com o modelo usando o checklist do projeto e
 // posta (ou atualiza) um único comentário no PR.
 import { execFileSync } from "node:child_process";
@@ -7,7 +7,7 @@ import { readFileSync } from "node:fs";
 const {
   GITHUB_TOKEN,
   OLLAMA_HOST = "http://localhost:11434",
-  OLLAMA_MODEL = "qwen2.5:14b",
+  OLLAMA_MODEL = "qwen2.5-coder:14b",
   PR_NUMBER,
   BASE_SHA,
   HEAD_SHA,

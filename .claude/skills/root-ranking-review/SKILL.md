@@ -1,6 +1,6 @@
 ---
 name: root-ranking-review
-description: Checklist de code review para o projeto Root Ranking. Usada pela GitHub Action de review automático (qwen2.5:14b via runner self-hosted) e pode ser invocada manualmente para revisar um diff ou PR deste repositório.
+description: Checklist de code review para o projeto Root Ranking. Usada pela GitHub Action de review automático (qwen2.5-coder:14b via runner self-hosted) e pode ser invocada manualmente para revisar um diff ou PR deste repositório.
 ---
 
 # Review — Root Ranking
