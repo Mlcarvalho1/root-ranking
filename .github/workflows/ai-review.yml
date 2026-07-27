@@ -33,7 +33,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OLLAMA_HOST: ${{ vars.OLLAMA_HOST || 'http://localhost:11434' }}
-          OLLAMA_MODEL: qwen2.5:14b
+          OLLAMA_MODEL: model: qwen2.5-coder:14b
           PR_NUMBER: ${{ github.event.pull_request.number }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
