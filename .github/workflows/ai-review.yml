@@ -1,0 +1,41 @@
+name: AI Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ai-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    # Runner self-hosted com Ollama rodando localmente (qwen2.5-coder:14b já
+    # baixado com `ollama pull qwen2.5-coder:14b`). Ajuste as labels abaixo
+    # se o runner tiver labels próprias configuradas.
+    runs-on: [self-hosted]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Rodar review com qwen2.5-coder:14b
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OLLAMA_HOST: ${{ vars.OLLAMA_HOST || 'http://localhost:11434' }}
+          OLLAMA_MODEL: qwen2.5-coder:14b
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          REPO: ${{ github.repository }}
+        run: node .github/scripts/ai-review.mjs
