@@ -2,6 +2,7 @@ import { Card } from "@/components/ui";
 import { RankingsTabs } from "@/components/rankings-tabs";
 import { SuitRow } from "@/components/suit-row";
 import { Crown } from "@/components/decor";
+import { TipOfTheDay } from "@/components/tip-of-the-day";
 import { getPlayerRankings } from "@/lib/rankings";
 
 export const dynamic = "force-dynamic";
@@ -16,6 +17,7 @@ export default async function PlayerRankingsPage() {
         <SuitRow />
       </div>
       <RankingsTabs active="players" />
+      <TipOfTheDay />
       <Card>
         <div className="overflow-x-auto">
           <table className="w-full text-left">
