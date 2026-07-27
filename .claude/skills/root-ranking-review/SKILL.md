@@ -40,3 +40,16 @@ Revise apenas o que está no diff. Seja objetivo: liste só problemas reais, nã
 ## Formato de saída
 
 Markdown curto, em português. Para cada problema: arquivo:linha (se souber), o que está errado, por que importa. Sem problemas → uma frase confirmando que o diff está ok.
+
+## Severidade
+
+Classifique cada problema:
+- **[BLOCKER]** — só para: senha em texto puro / sem `bcryptjs`; segredo hardcoded ou logado; SQL raw sem parametrização; rota que deveria checar sessão/admin e não checa; mudança em `schema.ts` sem migration; operação partida+ratings sem transação; Elo que não recalcula do histórico completo num CRUD de partida; violação das regras de súmula.
+- **[AVISO]** — problemas reais que não travam merge (zod ausente, `any` que esconde bug, lógica suspeita).
+- **[SUGESTÃO]** — melhorias opcionais.
+
+Nunca promova AVISO/SUGESTÃO a BLOCKER. Complexidade excessiva e estilo são, no máximo, AVISO.
+
+Prefixe cada item com o marcador. Ao final, emita EXATAMENTE uma linha, sozinha:
+`VEREDITO: BLOCK` se houver qualquer [BLOCKER], senão `VEREDITO: OK`.
+Nada depois dessa linha.

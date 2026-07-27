@@ -98,6 +98,17 @@ async function githubRequest(path, options = {}) {
   return res.status === 204 ? null : res.json();
 }
 
+async function setStatus(state, description) {
+  await githubRequest(`/repos/${REPO}/statuses/${HEAD_SHA}`, {
+    method: "POST",
+    body: JSON.stringify({
+      state, // "success" | "failure"
+      context: "ai-review/root-ranking",
+      description: description.slice(0, 140),
+    }),
+  });
+}
+
 async function upsertComment(body) {
   const fullBody = `${MARKER}\n\n${body}`;
   const comments = await githubRequest(`/repos/${REPO}/issues/${PR_NUMBER}/comments?per_page=100`);
@@ -134,8 +145,16 @@ async function main() {
     return;
   }
 
+  const blocked = /^\s*VEREDITO:\s*BLOCK/im.test(review);
+  const cleanReview = review.replace(/^\s*VEREDITO:.*$/im, "").trim();
+
   const header = `### 🤖 Review automático (${OLLAMA_MODEL})`;
-  await upsertComment(`${header}\n\n${review}`);
+  await upsertComment(`${header}\n\n${cleanReview}`);
+
+  await setStatus(
+    blocked ? "failure" : "success",
+    blocked ? "Encontrou problema BLOCKER" : "Sem blockers",
+  );
 }
 
 main().catch((err) => fail(err.stack || String(err)));
