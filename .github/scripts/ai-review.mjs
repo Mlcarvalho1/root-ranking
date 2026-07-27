@@ -7,7 +7,7 @@ import { readFileSync } from "node:fs";
 const {
   GITHUB_TOKEN,
   OLLAMA_HOST = "http://localhost:11434",
-  OLLAMA_MODEL = "qwen2.5:14b",
+  OLLAMA_MODEL = "qwen2.5-coder:14b",
   PR_NUMBER,
   BASE_SHA,
   HEAD_SHA,
